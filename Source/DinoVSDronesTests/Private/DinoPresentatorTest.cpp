@@ -6,7 +6,7 @@
 bool FDinoPresentatorBaseTest::RunTest(const FString& Parameters) {
 	UDinoPresentator* const DinoPresentator = NewObject<UDinoPresentator>();
 
-	TestFalse(TEXT("DinoPresentator's bCanEverTick is disabled"), DinoPresentator->PrimaryComponentTick.bCanEverTick);
+	TestFalse(TEXT("DinoPresentator's bCanEverTick is false"), DinoPresentator->PrimaryComponentTick.bCanEverTick);
 
 	return true;
 }
@@ -14,15 +14,15 @@ bool FDinoPresentatorBaseTest::RunTest(const FString& Parameters) {
 bool FDinoPresentatorSpeedTest::RunTest(const FString& Parameters) {
 	UDinoPresentator* const DinoPresentator = NewObject<UDinoPresentator>();
 
-	TestEqual(TEXT("DinoPresentator Speed' type equal to float"), typeid(DinoPresentator->Speed), typeid(float));
+	TestEqual(TEXT("DinoPresentator Speed type is float"), typeid(DinoPresentator->Speed), typeid(float));
 
 	const float Modification = 5.f;
 	const float DefaultSpeed = DinoPresentator->Speed;
 	DinoPresentator->StartReactOnModification(Modification);
-	TestEqual(TEXT("DinoPresentator StartReactOnModification(Modification) makes Speed equal to Speed*Modification"), DinoPresentator->Speed, DefaultSpeed*Modification);
+	TestEqual(TEXT("DinoPresentator StartReactOnModification(Modification) sets Speed to Speed*Modification"), DinoPresentator->Speed, DefaultSpeed*Modification);
 
 	DinoPresentator->EndReactOnModification(Modification);
-	TestEqual(TEXT("DinoPresentator EndReactOnModification(Modification) makes Speed equal to DefaultSpeed"), DinoPresentator->Speed, DefaultSpeed);
+	TestEqual(TEXT("DinoPresentator EndReactOnModification(Modification) sets Speed to DefaultSpeed"), DinoPresentator->Speed, DefaultSpeed);
 
 	return true;
 }
@@ -30,13 +30,13 @@ bool FDinoPresentatorSpeedTest::RunTest(const FString& Parameters) {
 bool FDinoPresentatorRoaringTest::RunTest(const FString& Parameters) {
 	UDinoPresentator* const DinoPresentator = NewObject<UDinoPresentator>();
 
-	TestEqual(TEXT("DinoPresentator IsRoaring by default equal to false"), DinoPresentator->GetRoaring(), false);
+	TestFalse(TEXT("DinoPresentator IsRoaring is false by default"), DinoPresentator->GetRoaring());
 
 	DinoPresentator->StartRoar();
-	TestEqual(TEXT("DinoPresentator StartRoar sets IsRoaring to true"), DinoPresentator->GetRoaring(), true);
+	TestTrue(TEXT("DinoPresentator StartRoar sets IsRoaring to true"), DinoPresentator->GetRoaring());
 
 	DinoPresentator->EndRoar();
-	TestEqual(TEXT("DinoPresentator EndRoar sets IsRoaring to false"), DinoPresentator->GetRoaring(), false);
+	TestFalse(TEXT("DinoPresentator EndRoar sets IsRoaring to false"), DinoPresentator->GetRoaring());
 
 	return true;
 }

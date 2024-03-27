@@ -45,22 +45,3 @@ bool UCowboyPresentator::GetAbleToCatch()
 {
 	return IsAbleToCatch;
 }
-
-// Called when the game starts
-void UCowboyPresentator::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UCowboyPresentator::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
-

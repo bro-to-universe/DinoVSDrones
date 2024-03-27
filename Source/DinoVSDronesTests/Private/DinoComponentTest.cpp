@@ -6,7 +6,7 @@
 bool FDinoComponentBaseTest::RunTest(const FString& Parameters) {
 	UDinoComponent* const DinoComponent = NewObject<UDinoComponent>();
 
-	TestFalse(TEXT("DinoComponent Tick is disabled"), DinoComponent->PrimaryComponentTick.bCanEverTick);
+	TestFalse(TEXT("DinoComponent bCanEverTick is false by default"), DinoComponent->PrimaryComponentTick.bCanEverTick);
 
 	return true;
 }
@@ -16,7 +16,7 @@ bool FDinoComponentSneakingTest::RunTest(const FString& Parameters) {
 	const float DefaultSpeed = DinoComponent->DinoPresentator->Speed;
 	const float ModificationSneaking = DinoComponent->ModificationSneaking;
 
-	TestFalse(TEXT("DinoComponent IsSneaking by default is false"), DinoComponent->GetSneaking());
+	TestFalse(TEXT("DinoComponent IsSneaking is false by default"), DinoComponent->GetSneaking());
 
 	DinoComponent->StartSneak();
 	TestTrue(TEXT("DinoComponent StartSneak sets IsSneaking to true"), DinoComponent->GetSneaking());
@@ -32,7 +32,7 @@ bool FDinoComponentSneakingTest::RunTest(const FString& Parameters) {
 bool FDinoComponentRoaringTimeTest::RunTest(const FString& Parameters) {
 	UDinoComponent* const DinoComponent = NewObject<UDinoComponent>();
 
-	TestEqual(TEXT("DinoComponent RoaringTime' type equal to float"), typeid(DinoComponent->RoaringTime), typeid(float));
+	TestEqual(TEXT("DinoComponent RoaringTime type is float"), typeid(DinoComponent->RoaringTime), typeid(float));
 
 	const float RoaringTime = 10.f;
 	DinoComponent->SetRoaringTime(RoaringTime);

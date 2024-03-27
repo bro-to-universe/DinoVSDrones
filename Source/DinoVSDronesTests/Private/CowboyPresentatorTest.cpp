@@ -7,7 +7,7 @@ bool FCowboyPresentatorBaseTest::RunTest(const FString& Parameters)
 {
 	UCowboyPresentator* const CowboyPresentator = NewObject<UCowboyPresentator>();
 
-	TestEqual(TEXT("CowboyPresentator bCanEverTick equal to false"), CowboyPresentator->PrimaryComponentTick.bCanEverTick, false);
+	TestFalse(TEXT("CowboyPresentator bCanEverTick is false by default"), CowboyPresentator->PrimaryComponentTick.bCanEverTick);
 
 	return true;
 }
@@ -16,13 +16,13 @@ bool FCowboyPresentatorCatchTest::RunTest(const FString& Parameters)
 {
 	UCowboyPresentator* const CowboyPresentator = NewObject<UCowboyPresentator>();
 
-	TestEqual(TEXT("CowboyPresentator default IsCatching equal to false"), CowboyPresentator->GetCatching(), false);
+	TestFalse(TEXT("CowboyPresentator IsCatching is false by default"), CowboyPresentator->GetCatching());
 
 	CowboyPresentator->StartCatch();
-	TestEqual(TEXT("CowboyPresentator->StartCatch makes IsCatching equal to true"), CowboyPresentator->GetCatching(), true);
+	TestTrue(TEXT("CowboyPresentator->StartCatch sets IsCatching to true"), CowboyPresentator->GetCatching());
 
 	CowboyPresentator->EndCatch();
-	TestEqual(TEXT("CowboyPresentator->EndCatch makes IsCatching equal to false"), CowboyPresentator->GetCatching(), false);
+	TestFalse(TEXT("CowboyPresentator->EndCatch sets IsCatching to false"), CowboyPresentator->GetCatching());
 
 	return true;
 }
@@ -31,13 +31,13 @@ bool FCowboyPresentatorAbleToCatchTest::RunTest(const FString& Parameters)
 {
 	UCowboyPresentator* const CowboyPresentator = NewObject<UCowboyPresentator>();
 
-	TestEqual(TEXT("CowboyPresentator isAbleToCatch by default is false"), CowboyPresentator->GetAbleToCatch(), true);
+	TestTrue(TEXT("CowboyPresentator isAbleToCatch is true by default"), CowboyPresentator->GetAbleToCatch());
 
 	CowboyPresentator->DisableCatch();
-	TestEqual(TEXT("CowboyPresentator isAbleToCatch after DisableCatch() equal to false"), CowboyPresentator->GetAbleToCatch(), false);
+	TestFalse(TEXT("CowboyPresentator DisableCatch() sets isAbleToCatch to false"), CowboyPresentator->GetAbleToCatch());
 
 	CowboyPresentator->EnableCatch();
-	TestEqual(TEXT("CowboyPresentator isAbleToCatch after EnableCatch() equal to true"), CowboyPresentator->GetAbleToCatch(), true);
+	TestTrue(TEXT("CowboyPresentator EnableCatch() sets isAbleToCatch to true"), CowboyPresentator->GetAbleToCatch());
 
 	return true;
 }
@@ -48,17 +48,17 @@ bool FCowboyPresentatorAbilityCatchTest::RunTest(const FString& Parameters)
 
 	CowboyPresentator->DisableCatch();
 	CowboyPresentator->StartCatch();
-	TestEqual(TEXT("CowboyPresentator with initial IsCatching false, DisableCatch() and then StartCatch(), set IsCatching to false"), CowboyPresentator->GetCatching(), false);
+	TestFalse(TEXT("CowboyPresentator with initial IsCatching false, DisableCatch(), StartCatch() sets IsCatching to false"), CowboyPresentator->GetCatching());
 	
 	CowboyPresentator->EnableCatch();
 	CowboyPresentator->StartCatch();
-	TestEqual(TEXT("CowboyPresentator with initial IsCatching false, EnableCatch() and then StartCatch(), set IsCatching to true"), CowboyPresentator->GetCatching(), true);
+	TestTrue(TEXT("CowboyPresentator with initial IsCatching false, EnableCatch(), StartCatch(), sets IsCatching to true"), CowboyPresentator->GetCatching());
 	
 	CowboyPresentator->DisableCatch();
-	TestEqual(TEXT("CowboyPresentator DisableCatch() shouldn't affect on IsCatching, leave the same value (true)"), CowboyPresentator->GetCatching(), true);
+	TestTrue(TEXT("CowboyPresentator DisableCatch() shouldn't affect on IsCatching, leave the same value (true)"), CowboyPresentator->GetCatching());
 
 	CowboyPresentator->EndCatch();
-	TestEqual(TEXT("CowboyPresentator EndCatch() should work even with DisableCatch()"), CowboyPresentator->GetCatching(), false);
+	TestFalse(TEXT("CowboyPresentator EndCatch() should work with DisableCatch()"), CowboyPresentator->GetCatching());
 
 	return true;
 }

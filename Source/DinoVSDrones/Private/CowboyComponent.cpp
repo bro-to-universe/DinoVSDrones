@@ -44,21 +44,3 @@ void UCowboyComponent::EndCatch()
 		UE_LOG(LogTemp, Error, TEXT("CowboyComponent:EndCatch: Couldn't get world"));
 	}
 }
-
-// Called when the game starts
-void UCowboyComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UCowboyComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}

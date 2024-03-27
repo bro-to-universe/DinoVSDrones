@@ -30,13 +30,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndCatch();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(EditAnywhere)
 	float CatchingTime = 5.f;
