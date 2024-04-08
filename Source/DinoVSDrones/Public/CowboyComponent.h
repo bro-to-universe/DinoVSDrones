@@ -32,7 +32,7 @@ public:
 
 public:	
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(BlueprintReadOnly)
 	float CatchingTime = 5.f;
 
 	UPROPERTY(BlueprintReadOnly)

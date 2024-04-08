@@ -37,15 +37,16 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void EndRoar();
 
-public:	
-	UPROPERTY(EditAnywhere)
-	float ModificationSneaking = 0.5f;
+public:
 
 	UPROPERTY(BlueprintReadOnly)
 	float RoaringTime = 5.f;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UDinoPresentator* DinoPresentator;
+
+	UPROPERTY(EditAnywhere)
+	FModificationParameters ModificationSneaking = { 0.5f, 1.f };
 
 private:
 

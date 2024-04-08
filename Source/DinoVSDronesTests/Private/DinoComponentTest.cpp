@@ -13,18 +13,21 @@ bool FDinoComponentBaseTest::RunTest(const FString& Parameters) {
 
 bool FDinoComponentSneakingTest::RunTest(const FString& Parameters) {
 	UDinoComponent* const DinoComponent = NewObject<UDinoComponent>();
-	const float DefaultSpeed = DinoComponent->DinoPresentator->Speed;
-	const float ModificationSneaking = DinoComponent->ModificationSneaking;
+	const float DefaultMovementSpeed = DinoComponent->DinoPresentator->MovementSpeed;
+	const float DefaultRotationSpeed = DinoComponent->DinoPresentator->RotationSpeed;
+	const FModificationParameters ModificationSneaking = DinoComponent->ModificationSneaking;
 
 	TestFalse(TEXT("DinoComponent IsSneaking is false by default"), DinoComponent->GetSneaking());
 
 	DinoComponent->StartSneak();
 	TestTrue(TEXT("DinoComponent StartSneak sets IsSneaking to true"), DinoComponent->GetSneaking());
-	TestEqual(TEXT("DinoComponent StartSneak sets Speed to DefaultSpeed*ModificationSneaking"), DinoComponent->DinoPresentator->Speed, DefaultSpeed*ModificationSneaking);
+	TestEqual(TEXT("DinoComponent StartSneak sets MovementSpeed to DefaultMovementSpeed*ModificationSneaking"), DinoComponent->DinoPresentator->MovementSpeed, DefaultMovementSpeed*ModificationSneaking.Movement);
+	TestEqual(TEXT("DinoComponent StartSneak sets RotationSpeed to DefaultRotationSpeed*ModificationSneaking"), DinoComponent->DinoPresentator->RotationSpeed, DefaultRotationSpeed*ModificationSneaking.Rotation);
 
 	DinoComponent->EndSneak();
 	TestFalse(TEXT("DinoComponent EndSneak sets IsSneaking to false"), DinoComponent->GetSneaking());
-	TestEqual(TEXT("DinoComponent EndSneak sets Speed to DefaultSpeed"), DinoComponent->DinoPresentator->Speed, DefaultSpeed);
+	TestEqual(TEXT("DinoComponent EndSneak sets MovementSpeed to DefaultMovementSpeed"), DinoComponent->DinoPresentator->MovementSpeed, DefaultMovementSpeed);
+	TestEqual(TEXT("DinoComponent EndSneak sets RotationSpeed to DefaultRotationSpeed"), DinoComponent->DinoPresentator->RotationSpeed, DefaultRotationSpeed);
 
 	return true;
 }

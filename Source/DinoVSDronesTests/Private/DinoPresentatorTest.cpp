@@ -14,15 +14,18 @@ bool FDinoPresentatorBaseTest::RunTest(const FString& Parameters) {
 bool FDinoPresentatorSpeedTest::RunTest(const FString& Parameters) {
 	UDinoPresentator* const DinoPresentator = NewObject<UDinoPresentator>();
 
-	TestEqual(TEXT("DinoPresentator Speed type is float"), typeid(DinoPresentator->Speed), typeid(float));
+	TestEqual(TEXT("DinoPresentator MovementSpeed type is float"), typeid(DinoPresentator->MovementSpeed), typeid(float));
 
-	const float Modification = 5.f;
-	const float DefaultSpeed = DinoPresentator->Speed;
+	const FModificationParameters Modification = {5.f, 5.f};
+	const float DefaultMovementSpeed = DinoPresentator->MovementSpeed;
+	const float DefaultRotationSpeed = DinoPresentator->RotationSpeed;
 	DinoPresentator->StartReactOnModification(Modification);
-	TestEqual(TEXT("DinoPresentator StartReactOnModification(Modification) sets Speed to Speed*Modification"), DinoPresentator->Speed, DefaultSpeed*Modification);
+	TestEqual(TEXT("DinoPresentator StartReactOnModification(Modification) sets MovementSpeed to MovementSpeed*Modification"), DinoPresentator->MovementSpeed, DefaultMovementSpeed*Modification.Movement);
+	TestEqual(TEXT("DinoPresentator StartReactOnModification(Modification) sets RotationSpeed to RotationSpeed*Modification"), DinoPresentator->RotationSpeed, DefaultRotationSpeed * Modification.Rotation);
 
 	DinoPresentator->EndReactOnModification(Modification);
-	TestEqual(TEXT("DinoPresentator EndReactOnModification(Modification) sets Speed to DefaultSpeed"), DinoPresentator->Speed, DefaultSpeed);
+	TestEqual(TEXT("DinoPresentator EndReactOnModification(Modification) sets MovementSpeed to DefaultMovementSpeed"), DinoPresentator->MovementSpeed, DefaultMovementSpeed);
+	TestEqual(TEXT("DinoPresentator EndReactOnModification(Modification) sets RotationSpeed to DefaultRotationSpeed"), DinoPresentator->RotationSpeed, DefaultRotationSpeed);
 
 	return true;
 }

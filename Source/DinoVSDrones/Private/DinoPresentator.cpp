@@ -13,14 +13,16 @@ UDinoPresentator::UDinoPresentator()
 	// ...
 }
 
-void UDinoPresentator::StartReactOnModification(float Modification)
+void UDinoPresentator::StartReactOnModification(FModificationParameters MP)
 {
-	Speed *= Modification;
+	MovementSpeed *= MP.Movement;
+	RotationSpeed *= MP.Rotation;
 }
 
-void UDinoPresentator::EndReactOnModification(float Modification)
+void UDinoPresentator::EndReactOnModification(FModificationParameters MP)
 {
-	Speed /= Modification;
+	MovementSpeed /= MP.Movement;
+	RotationSpeed /= MP.Rotation;
 }
 
 bool UDinoPresentator::GetRoaring()

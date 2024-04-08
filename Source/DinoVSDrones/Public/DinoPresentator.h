@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "ModificationParameters.h"
 #include "DinoPresentator.generated.h"
 
 
@@ -17,10 +18,10 @@ public:
 	UDinoPresentator();
 
 	UFUNCTION(BlueprintCallable)
-	void StartReactOnModification(float Modification);
+	void StartReactOnModification(FModificationParameters MP);
 
 	UFUNCTION(BlueprintCallable)
-	void EndReactOnModification(float Modification);
+	void EndReactOnModification(FModificationParameters MP);
 
 	UFUNCTION(BlueprintPure)
 	bool GetRoaring();
@@ -32,8 +33,11 @@ public:
 	void EndRoar();
 
 public:	
-	UPROPERTY(EditAnywhere)
-	float Speed = 5.f;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float MovementSpeed = 5.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float RotationSpeed = 5.f;
 
 private:
 
