@@ -24,7 +24,7 @@ public:
 
 	//launch timer
 	UFUNCTION(BlueprintCallable)
-	void StartCatch();
+	bool StartCatch();
 
 	//handle timer
 	UFUNCTION(BlueprintCallable)
@@ -35,7 +35,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	float CatchingTime = 5.f;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UCowboyPresentator* CowboyPresentator;
 
 private:

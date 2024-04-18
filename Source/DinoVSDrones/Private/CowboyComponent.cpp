@@ -19,18 +19,21 @@ void UCowboyComponent::SetCatchingTime(float Time)
 	CatchingTime = Time;
 }
 
-void UCowboyComponent::StartCatch()
+bool UCowboyComponent::StartCatch()
 {
+	bool IsCatchingSuccess = false;
 	if (CowboyPresentator->GetAbleToCatch() && !CowboyPresentator->GetCatching()) {
 		UWorld* const World = GetWorld();
 		if (World) {
 			CowboyPresentator->StartCatch();
 			World->GetTimerManager().SetTimer(CatchTimer, this, &UCowboyComponent::EndCatch, CatchingTime, false);
+			IsCatchingSuccess = true;
 		}
 		else {
 			UE_LOG(LogTemp, Error, TEXT("CowboyComponent:StartCatch: Couldn't get world"));
 		}
 	}
+	return IsCatchingSuccess;
 }
 
 void UCowboyComponent::EndCatch()

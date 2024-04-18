@@ -32,7 +32,7 @@ public:
 	void EndSneak();
 
 	UFUNCTION(BlueprintCallable)
-	void StartRoar();
+	bool StartRoar();
 
 	UFUNCTION(BlueprintCallable)
 	void EndRoar();

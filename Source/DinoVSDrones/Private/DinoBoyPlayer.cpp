@@ -10,6 +10,7 @@ ADinoBoyPlayer::ADinoBoyPlayer()
 	PrimaryActorTick.bCanEverTick = true;
 
 	DinoComponent = CreateDefaultSubobject<UDinoComponent>(TEXT("DinoComponent"));
+	CowboyComponent = CreateDefaultSubobject<UCowboyComponent>(TEXT("CowboyComponent"));
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
 	RootComponent = StaticMeshComponent;
 }

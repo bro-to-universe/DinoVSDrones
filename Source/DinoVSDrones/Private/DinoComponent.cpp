@@ -37,18 +37,21 @@ void UDinoComponent::EndSneak()
 	DinoPresentator->EndReactOnModification(ModificationSneaking);
 }
 
-void UDinoComponent::StartRoar()
+bool UDinoComponent::StartRoar()
 {
+	bool IsRoaringSuccess = false;
 	if (!DinoPresentator->GetRoaring()) {
 		UWorld* const World = GetWorld();
 		if (World) {
 			DinoPresentator->StartRoar();
-			World->GetTimerManager().SetTimer(RoarTimer, this, &UDinoComponent::StartRoar, RoaringTime, false);
+			World->GetTimerManager().SetTimer(RoarTimer, this, &UDinoComponent::EndRoar, RoaringTime, false);
+			IsRoaringSuccess = true;
 		}
 		else {
 			UE_LOG(LogTemp, Error, TEXT("DinoComponent::StartRoar: Couldn't get world"));
 		}
 	}
+	return IsRoaringSuccess;
 }
 
 void UDinoComponent::EndRoar()

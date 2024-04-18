@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 
 #include "DinoComponent.h"
+#include "CowboyComponent.h"
 
 #include "DinoBoyPlayer.generated.h"
 
@@ -37,6 +38,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UDinoComponent* DinoComponent;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+	UCowboyComponent* CowboyComponent;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UStaticMeshComponent* StaticMeshComponent;
